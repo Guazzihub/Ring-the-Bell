@@ -1,247 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Service bell</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Service Bell</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="public/styles.css">
+</head>
 
-  </head>
+<body id="body">
+  <!-- Settings Icon -->
+  <span class="glyphicon glyphicon-cog" id="settingsIcon" aria-label="Open Settings"></span>
 
-  <body onload="openSettings()" id="changeme">
-    <style>
-      body {
-        background: black;
-      }
-
-      h3 {
-        color: white;
-        margin-left: 5px;
-      }
-
-      #newBg {
-        display: none;
-      }
-
-      #wrapper:active {
-        opacity: 0.8;
-      }
-
-      .button {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        margin-top: -50px;
-        margin-left: -100px;
-        height: 150px;
-        width: 150px;
-        background-color: #FF291A;
-        border-radius: 50%;
-      }
-
-      .inner_button {
-        color: black;
-        border-style: solid;
-        height: 140px;
-        width: 140px;
-        background-color: red;
-        border-radius: 50%;
-        margin-top: 4px;
-      }
-
-      .glyphicon-cog {
-        font-size: 30px;
-        margin-top: 10px;
-        color: #dedede;
-        margin-left: 5px;
-      }
-
-      .card {
-        background: #dfdfdf;
-        width: 300px;
-        margin-left: 5px;
-        margin-top: 10px;
-        border-radius: 3%;
-        display: none;
-      }
-
-
-
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 24px;
-      }
-
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-      }
-
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 18px;
-        width: 18px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-      }
-
-      input:checked+.slider {
-        background-color: #2196F3;
-      }
-
-      input:focus+.slider {
-        box-shadow: 0 0 1px #2196F3;
-      }
-
-      input:checked+.slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-      }
-
-      #counter {
-        display: none;
-      }
-
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-
-      .slider.round:before {
-        border-radius: 50%;
-      }
-    </style>
-
-
-    <center>
-      <div id="wrapper" onclick="counterAdd()">
-        <div class="button" id='button' onclick="play()">
-          <center>
-            <div class="inner_button" id="inner_button" ondblclick="extended()"></div>
-          </center>
-          <audio id="play">
-            <source src="bell_1.mp3" type="audio/mp3">
-          </audio>
-          <audio id="extendPlay">
-            <source src="bell.mp3" type="audio/mp3">
-          </audio>
-        </div>
-
+  <!-- Settings Card -->
+  <div class="card" id="settingsCard">
+    <div class="card-body">
+      <div class="label-counter">
+        <h5>Show Counter:</h5>
+        <label class="switch">
+          <input type="checkbox" id="counterCheckbox">
+          <span class="slider round"></span>
+        </label>
       </div>
-
-    </center>
-    <nav>
-      <span class="glyphicon glyphicon-cog" id="icon" onclick="openSettings()"></span>
-
-      <div class="card" id="card">
-        <div class="card-body">
-          <h5 style="float:left; margin-left:5px; margin-top: 10px;">Mostrar contador:</h5>
-          <label style="float:right; margin-right:15px; margin-top: 10px; font-size:20px;" class="switch">
-            <input type="checkbox" id="check" onclick="counterShow()">
-            <span class=" slider round"></span>
-          </label></br></br>
-
-          <h5 style="text-align: left; margin-left:5px; margin-top: 10px;">Usar tema padrão:</h5>
-          <label style="float: right; margin-right:15px; margin-top: -26px; font-size:20px;" class="switch">
-            <input type="checkbox" id="theme" onchange="changeBg()" checked>
-            <span class=" slider round"></span>
-          </label></br>
-          <input style="margin-left:5px;" type="color" name="newBg" id="newBg" onchange="newBg()">
-          </br>
-        </div>
+      <div class="label-theme">
+        <h5>Use Default Theme:</h5>
+        <label class="switch">
+          <input type="checkbox" id="themeCheckbox" checked>
+          <span class="slider round"></span>
+        </label>
       </div>
-    </nav>
-    <h3 id="counter">Contador: 0</h3>
+      <input type="color" name="newBackground" id="newBackground">
+    </div>
+  </div>
 
+  <!-- Main Button -->
+  <center>
+    <div id="wrapper">
+      <div class="button" id="button">
+        <center>
+          <div class="inner-button" id="innerButton"></div>
+        </center>
+        <!-- Audio Files -->
+        <audio id="playAudio">
+          <source src="public/sounds/bell_1.mp3" type="audio/mp3">
+        </audio>
+        <audio id="extendPlayAudio">
+          <source src="public/sounds/bell.mp3" type="audio/mp3">
+        </audio>
+      </div>
+    </div>
+  </center>
 
-  </body>
+  <!-- Counter Display -->
+  <h3 id="counterDisplay">Counter: 0</h3>
 
-  <script type="text/javascript">
-    var count = 0;
-
-    function counterAdd() {
-      count += 1;
-      var h3 = document.querySelector('#counter')
-      h3.innerHTML = (`Contador: ${count}`)
-    }
-
-    function counterShow() {
-      // Get the checkbox
-      var check = document.getElementById("check");
-      var counterControl = document.querySelector('#counter')
-
-      // If the checkbox is checked, display the output text
-      if (check.checked == true) {
-        counterControl.style.display = "block";
-      } else {
-        counterControl.style.display = "none";
-      }
-    }
-
-    function play() {
-      //Play
-      var play = document.getElementById("play");
-
-      play.play();
-    }
-
-    function extended() {
-      var play = document.getElementById("extendPlay");
-
-      play.play();
-    }
-
-    function openSettings() {
-      if (card.style.display === "none") {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    }
-
-    function changeBg() {
-      var theme = document.getElementById("theme");
-      var bg = document.getElementById("newBg");
-
-      if (theme.checked == true) {
-        bg.style.display = "none";
-        document.body.style.background = 'black';
-      } else {
-        bg.style.display = "block";
-
-        //To catch the previous background
-        var newBg = document.getElementById('newBg')
-        document.body.setAttribute('style', `background:${newBg.value}`)
-      }
-    }
-
-    function newBg() {
-      //To set a new background color
-      var newBg = document.getElementById('newBg')
-      document.body.setAttribute('style', `background:${newBg.value}`)
-    }
-  </script>
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="public/scripts.js"></script>
+</body>
 
 </html>
