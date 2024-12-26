@@ -1,0 +1,176 @@
+/* Body styling */
+#body {
+  background: black;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Heading styling */
+h3 {
+  color: white;
+  margin: 10px;
+}
+
+/* Custom background color input */
+#newBackground {
+  display: none;
+}
+
+/* Opacity effect when wrapper is active */
+#wrapper:active {
+  opacity: 0.8;
+}
+
+/* Main button styling */
+.button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 150px;
+  width: 150px;
+  background-color: #FF291A;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inner button styling */
+.inner-button {
+  color: black;
+  border: solid;
+  height: 140px;
+  width: 140px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Settings icon styling */
+.glyphicon-cog {
+  font-size: 30px;
+  margin: 15px;
+  color: #dedede;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+/* Settings card styling */
+.card {
+  background: #dfdfdf;
+  width: 300px;
+  border-radius: 5px;
+  display: none;
+  position: absolute;
+  top: 60px; /* Positioned below the settings icon */
+  right: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Just below the settings icon */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show the card with opacity transition */
+.card.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Switch styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Counter display styling */
+#counterDisplay {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  z-index: 500;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Additional classes for labels */
+.label-counter,
+.label-theme {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+input[type="color"] {
+  margin-left: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
