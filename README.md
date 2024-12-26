@@ -1,4 +1,4 @@
-# Service Bell
+# [Ring the Bell](https://guazzihub.github.io/Ring-the-Bell/)
 
 A simple and interactive web-based service bell application built with HTML, CSS, and JavaScript. This project allows users to simulate ringing a service bell with customizable settings.
 
